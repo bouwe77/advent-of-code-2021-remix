@@ -1,9 +1,9 @@
-import { Form, useLoaderData, redirect, useActionData } from 'remix'
+import { Form, useLoaderData, Scripts, useActionData } from 'remix'
 import type { LoaderFunction, ActionFunction } from 'remix'
 import DayWrapper from '~/components/DayWrapper'
 import invariant from 'tiny-invariant'
-import { ActionData, isSolution, isError } from '../types'
-import { getSolution } from '../solutions'
+import { ActionData, isSolution, isError } from '../../types'
+import { getSolution } from '../../solutions'
 
 export const loader: LoaderFunction = async ({ params }) => {
   if (!params.day) throw new Error('No day specified')
@@ -59,5 +59,14 @@ export default function Day() {
         </div>
       </Form>
     </DayWrapper>
+  )
+}
+
+export function ErrorBoundary({ error }: { error: Error }) {
+  return (
+    <>
+      {error.message}
+      <Scripts />
+    </>
   )
 }
