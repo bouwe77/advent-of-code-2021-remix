@@ -2,3 +2,13 @@ body {
   background-color: pink;
   color: #101010;
 }
+
+.submit {
+  border: 1px solid lightgray;
+  width: 100px;
+  height: 40px;
+  font-size: 22px;
+  background-color: white;
+  color: #101010;
+  cursor: pointer;
+}

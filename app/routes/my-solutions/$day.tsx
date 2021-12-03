@@ -29,36 +29,41 @@ export default function Day() {
   const actionData = useActionData<ActionData>()
 
   return (
-    <DayWrapper day={day}>
-      <div>
+    <>
+      <h1>DAY {day}</h1>
+      <div style={{ marginBottom: '40px' }}>
+        <Form method="post">
+          <div>
+            <div>
+              <h2>
+                <label htmlFor="input">Input</label>
+              </h2>
+            </div>
+            <div>
+              {actionData && isError(actionData) ? (
+                <em>{actionData.error}</em>
+              ) : null}
+              <textarea
+                name="input"
+                id="input"
+                style={{ width: '300px', height: '200px' }}
+              ></textarea>
+            </div>
+            <div>
+              <input type="submit" value="Submit" className="submit" />
+            </div>
+          </div>
+        </Form>
+      </div>
+      <div style={{ marginBottom: '40px' }}>
         {actionData && isSolution(actionData) ? (
           <>
+            <h2>Solution</h2>
             {actionData.solution}
-            {actionData.solution === '150' ? <>☑️</> : null}
           </>
         ) : null}
       </div>
-      <Form method="post">
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <div>
-            {actionData && isError(actionData) ? (
-              <em>{actionData.error}</em>
-            ) : null}
-            <textarea
-              name="input"
-              style={{ width: '300px', height: '300px' }}
-            ></textarea>
-          </div>
-          <div>
-            <input
-              type="submit"
-              value="Submit"
-              style={{ width: '100px', height: '40px' }}
-            />
-          </div>
-        </div>
-      </Form>
-    </DayWrapper>
+    </>
   )
 }
 
