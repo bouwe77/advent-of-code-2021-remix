@@ -6,7 +6,7 @@ type LoaderData = { allDays: number[]; daysWithSolution: number[] }
 export const loader: LoaderFunction = async () => {
   const allDays = Array.from({ length: 25 }, (_, i) => i + 1)
 
-  const daysWithSolution = [2]
+  const daysWithSolution = [1, 2]
 
   return { allDays, daysWithSolution }
 }
