@@ -1,6 +1,5 @@
 import { Form, useLoaderData, Scripts, useActionData } from 'remix'
 import type { LoaderFunction, ActionFunction } from 'remix'
-import DayWrapper from '~/components/DayWrapper'
 import invariant from 'tiny-invariant'
 import { ActionData, isSolution, isError } from '../../types'
 import { getSolution } from '../../solutions'
@@ -20,6 +19,8 @@ export const action: ActionFunction = async ({ params, request }) => {
 
   invariant(typeof input === 'string')
   const solution = getSolution(params.day, input)
+
+  console.log(solution)
 
   return { solution }
 }
@@ -59,7 +60,7 @@ export default function Day() {
         {actionData && isSolution(actionData) ? (
           <>
             <h2>Solution</h2>
-            {actionData.solution}
+            <pre>{JSON.stringify(actionData, null, 2)}</pre>
           </>
         ) : null}
       </div>
