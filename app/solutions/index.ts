@@ -21,6 +21,7 @@ export const getSolution = async (day: string): Promise<Solutions> => {
 
   const solution = {
     example: getSolution(exampleInput.toString()),
+    //actual: { 'Part 1': '-1', 'Part 2': '-1' },
     actual: getSolution(input.toString()),
   }
 
