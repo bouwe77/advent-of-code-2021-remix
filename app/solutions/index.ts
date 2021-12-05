@@ -1,8 +1,28 @@
-import getSolution1 from './1'
-import getSolution2 from './2'
+import path from 'path'
+import * as fs from 'fs/promises'
+import { Solution } from '~/types'
+import solutionFunctions from './all'
 
-export const getSolution = (day: string, input: string) => {
-  if (day === '1') return getSolution1(input)
-  if (day === '2') return getSolution2(input)
-  throw new Error('No solution yet')
+type Solutions = {
+  actual: Solution
+  example: Solution
+}
+
+let inputPath = path.join(__dirname, '../input')
+
+export const getSolution = async (day: string): Promise<Solutions> => {
+  const exampleInput = await fs.readFile(
+    path.join(inputPath, `${day}.example-input.txt`),
+  )
+
+  const input = await fs.readFile(path.join(inputPath, `${day}.input.txt`))
+
+  const getSolution = solutionFunctions[day]
+
+  const solution = {
+    example: getSolution(exampleInput.toString()),
+    actual: getSolution(input.toString()),
+  }
+
+  return solution
 }
