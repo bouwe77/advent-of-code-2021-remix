@@ -1,12 +1,13 @@
 import { useLoaderData, Link, Outlet } from 'remix'
 import type { LoaderFunction } from 'remix'
+import { howManyDaysWithSolution } from '~/solutions'
 
 type LoaderData = { allDays: number[]; daysWithSolution: number }
 
 export const loader: LoaderFunction = async () => {
   const allDays = Array.from({ length: 25 }, (_, i) => i + 1)
 
-  const daysWithSolution = 3
+  const daysWithSolution = howManyDaysWithSolution()
 
   return { allDays, daysWithSolution }
 }
