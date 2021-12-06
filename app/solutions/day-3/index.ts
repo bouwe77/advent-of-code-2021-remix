@@ -32,20 +32,9 @@ const getPart1 = (input: string): string => {
     }
   }
 
-  console.log(mostCommon)
-
   const mostCommonDecimal = toDecimal(mostCommon)
-
-  console.log(mostCommonDecimal)
-
   const leastCommonDecimal = toDecimal(leastCommon)
-  console.log(leastCommon)
-
-  console.log(leastCommonDecimal)
-
   const solution = mostCommonDecimal * leastCommonDecimal
-
-  console.log(solution)
 
   return solution.toString()
 }
