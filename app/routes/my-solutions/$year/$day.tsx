@@ -1,10 +1,12 @@
-import { useLoaderData, Scripts } from 'remix'
-import type { LoaderFunction } from 'remix'
-import { getSolution } from '../../solutions'
+import { useLoaderData, Scripts } from '@remix-run/react'
+import type { LoaderFunction } from '@remix-run/server-runtime'
+import { getSolution } from '../../../solutions'
 
 export const loader: LoaderFunction = async ({ params }) => {
+  if (!params.year) throw new Error('No year specified')
   if (!params.day) throw new Error('No day specified')
-  const solution = await getSolution(params.day)
+
+  const solution = await getSolution(params.year, params.day)
   return { day: params.day, solution }
 }
 

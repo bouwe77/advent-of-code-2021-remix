@@ -1,5 +1,4 @@
 import {
-  Link,
   Links,
   LiveReload,
   Meta,
@@ -7,8 +6,8 @@ import {
   Scripts,
   ScrollRestoration,
   useCatch,
-} from 'remix'
-import type { LinksFunction } from 'remix'
+} from '@remix-run/react'
+import type { LinksFunction } from '@remix-run/server-runtime'
 
 import globalStylesUrl from '~/styles/global.css'
 import darkStylesUrl from '~/styles/dark.css'
@@ -54,17 +53,10 @@ export function CatchBoundary() {
   let message
   switch (caught.status) {
     case 401:
-      message = (
-        <p>
-          Oops! Looks like you tried to visit a page that you do not have access
-          to.
-        </p>
-      )
+      message = <p>Oops! Looks like you tried to visit a page that you do not have access to.</p>
       break
     case 404:
-      message = (
-        <p>Oops! Looks like you tried to visit a page that does not exist.</p>
-      )
+      message = <p>Oops! Looks like you tried to visit a page that does not exist.</p>
       break
 
     default:
@@ -83,13 +75,7 @@ export function CatchBoundary() {
   )
 }
 
-function Document({
-  children,
-  title,
-}: {
-  children: React.ReactNode
-  title?: string
-}) {
+function Document({ children, title }: { children: React.ReactNode; title?: string }) {
   return (
     <html lang="en">
       <head>
@@ -110,10 +96,5 @@ function Document({
 }
 
 function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <div>
-      <h1>Advent of Code 2021</h1>
-      {children}
-    </div>
-  )
+  return <div>{children}</div>
 }

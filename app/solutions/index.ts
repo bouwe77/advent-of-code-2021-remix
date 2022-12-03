@@ -10,17 +10,14 @@ type Solutions = {
 
 let inputPath = path.join(__dirname, '../input')
 
-export const howManyDaysWithSolution = () =>
-  Object.keys(solutionFunctions).length
+export const howManyDaysWithSolution = (year: string) => Object.keys(solutionFunctions[year]).length
 
-export const getSolution = async (day: string): Promise<Solutions> => {
-  const exampleInput = await fs.readFile(
-    path.join(inputPath, `${day}.example.txt`),
-  )
+export const getSolution = async (year: string, day: string): Promise<Solutions> => {
+  const exampleInput = await fs.readFile(path.join(inputPath, year, `${day}.example.txt`))
 
-  const input = await fs.readFile(path.join(inputPath, `${day}.txt`))
+  const input = await fs.readFile(path.join(inputPath, year, `${day}.txt`))
 
-  const getSolution = solutionFunctions[day]
+  const getSolution = solutionFunctions[year][day]
 
   const solution = {
     example: getSolution(exampleInput.toString()),
